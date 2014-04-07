@@ -29,6 +29,15 @@
             android:noHistory="true" >
             >
         </activity>
+        <activity
+            android:name="com.MDmde.mobile.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name="com.MDmde.mobile.UpdateProfileActivity"
+            android:label="@string/title_activity_update_profile"
+            android:noHistory="true">
+        </activity>
     </application>
 
 </manifest>

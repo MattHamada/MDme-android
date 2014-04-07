@@ -1,0 +1,44 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:id="@+id/profile_image"
+            android:layout_marginBottom="32dp"/>
+
+        <TextView android:id="@+id/profile_full_name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="16dp"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="32dp"/>
+
+        <TextView android:id="@+id/profile_email_address"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="16dp"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="32dp"/>
+
+
+
+        <TextView android:id="@+id/profile_phone_number"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="32dp"/>
+
+        <Button android:id="@+id/edit_profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:text="@string/edit"/>
+
+    </LinearLayout>

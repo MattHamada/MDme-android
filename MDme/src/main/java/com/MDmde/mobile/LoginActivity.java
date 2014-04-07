@@ -123,7 +123,7 @@ public class LoginActivity extends ActionBarActivity {
                 catch (HttpResponseException e)
                 {
                     e.printStackTrace();
-                    Log.e("ClientProtocol", "" + e);
+                    Log.e("ClientProtocol", e.toString());
                     json.put("info", "Email and/or password are invalid. Retry!");
                 }
                 catch (IOException e)

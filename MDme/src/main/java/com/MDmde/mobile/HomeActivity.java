@@ -42,7 +42,6 @@ public class HomeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //loadTasksFromAPI(TASKS_URL);
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
 
@@ -93,7 +92,7 @@ public class HomeActivity extends ActionBarActivity {
     private void loadTasksFromAPI(String url)
     {
         GetTasksTask getTasksTask = new GetTasksTask(HomeActivity.this);
-        getTasksTask.setMessageLoading("Loading tasks");
+        getTasksTask.setMessageLoading("Loading...");
         getTasksTask.execute(url + "?api_token=" + mPreferences.getString("ApiToken", ""));
     }
 
@@ -109,6 +108,19 @@ public class HomeActivity extends ActionBarActivity {
         {
             try
             {
+                //make sure api key still correct
+                Boolean validApi = json.getBoolean("success");
+                if (!validApi)
+                {
+                    SharedPreferences.Editor editor = mPreferences.edit();
+                    //reset auth token
+                    editor.remove("ApiToken");
+                    editor.commit();
+                    //launch Login Activity
+                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
+                    startActivity(intent3);
+                    finish();
+                }
                 //add task names t list
                 JSONArray jsonTasks = json.getJSONObject("data").getJSONArray("tasks");
                 int length = jsonTasks.length();
@@ -135,6 +147,8 @@ public class HomeActivity extends ActionBarActivity {
                         switch(position)
                         {
                             case 0:
+                                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                startActivity(intent);
                                 break;
                             case 1:
                                 break;
@@ -146,9 +160,10 @@ public class HomeActivity extends ActionBarActivity {
                                 editor.remove("ApiToken");
                                 editor.commit();
                                 //launch Login Activity
-                                Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-                                startActivity(intent);
+                                Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
+                                startActivity(intent3);
                                 finish();
+                                break;
 
                         }
                     }

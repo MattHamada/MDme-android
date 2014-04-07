@@ -12,5 +12,13 @@
     <string name="user_email">Email Address</string>
     <string name="user_password">Password</string>
     <string name="title_activity_logout">LogoutActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_update_profile">UpdateProfileActivity</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="email">Email:</string>
+    <string name="phone_number">Phone#:</string>
+    <string name="edit">Edit</string>
+    <string name="update">Update</string>
 
 </resources>
