@@ -1,16 +1,22 @@
 package com.MDmde.mobile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.savagelook.android.UrlJsonAsyncTask;
@@ -32,12 +38,18 @@ import java.util.Iterator;
 public class UpdateProfileActivity extends ActionBarActivity {
 
     private final String UPDATE_PROFILE_URL = "http://www.mdme.us/api/v1/patients/update";
+    private static final int REQUEST_PHOTO = 0;
+
     private SharedPreferences mPreferences;
 
     private EditText mFirstNameField;
     private EditText mLastNameField;
     private EditText mPhoneNumberField;
     private EditText mEmailField;
+    private ImageView mProfileImage;
+    private ImageButton mPhotoButton;
+    private int orientation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +57,17 @@ public class UpdateProfileActivity extends ActionBarActivity {
         setContentView(R.layout.activity_update_profile);
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+
+        mPhotoButton = (ImageButton)findViewById(R.id.update_profile_camera_button);
+        mPhotoButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(), ProfileCameraActivity.class);
+                startActivityForResult(i, REQUEST_PHOTO);
+            }
+        });
     }
 
 
@@ -76,6 +99,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
         mLastNameField =    (EditText)findViewById(R.id.last_name_edit);
         mEmailField =       (EditText)findViewById(R.id.email_edit);
         mPhoneNumberField = (EditText)findViewById(R.id.phone_number_edit);
+        mProfileImage =     (ImageView)findViewById(R.id.edit_profile_image);
 
         //populate fields with current data
         Intent intent = getIntent();
@@ -83,6 +107,11 @@ public class UpdateProfileActivity extends ActionBarActivity {
         mLastNameField.setText(intent.getStringExtra("lastName"));
         mPhoneNumberField.setText(intent.getStringExtra("phoneNumber"));
         mEmailField.setText(intent.getStringExtra("email"));
+
+        //load image
+        Bundle extras = getIntent().getBundleExtra("profileBundle");
+        Bitmap bmp = extras.getParcelable("profileImage");
+        mProfileImage.setImageBitmap(bmp);
 
         Button mUpdateButton = (Button)findViewById(R.id.update_profile_button);
         mUpdateButton.setOnClickListener(new View.OnClickListener()
@@ -96,6 +125,24 @@ public class UpdateProfileActivity extends ActionBarActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (resultCode != Activity.RESULT_OK) return;
+
+        switch(requestCode)
+        {
+            case REQUEST_PHOTO:
+                String filename = data.getStringExtra(ProfileCameraActivity.EXTRA_PHOTO_FILENAME);
+                orientation = data.getIntExtra(ProfileCameraActivity.EXTRA_ORIENTATION, Surface.ROTATION_270);
+                if (filename != null)
+                {
+                    mProfileImage.setImageBitmap(BitmapFactory.decodeFile(filename));
+                    mProfileImage.invalidate();
+                }
+        }
     }
 
     private class UpdateProfileTask extends UrlJsonAsyncTask

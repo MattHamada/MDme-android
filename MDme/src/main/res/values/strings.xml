@@ -20,5 +20,7 @@
     <string name="phone_number">Phone#:</string>
     <string name="edit">Edit</string>
     <string name="update">Update</string>
-
+    <string name="title_activity_profile_camera">ProfileCameraActivity</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="load">Load</string>
 </resources>

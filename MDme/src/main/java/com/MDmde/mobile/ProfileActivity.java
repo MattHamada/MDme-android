@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,12 +28,14 @@ import java.io.InputStream;
 public class ProfileActivity extends ActionBarActivity {
 
     private final static String PROFILE_URL = "http://www.mdme.us/api/v1/patients/show.json";
+
     private SharedPreferences mPreferences;
     private String mFirstName;
     private String mLastName;
     private String mEmail;
     private String mPhoneNumber;
     private String mPictureUrl;
+    private ImageView mProfileImage;
 
 
     @Override
@@ -41,6 +44,7 @@ public class ProfileActivity extends ActionBarActivity {
         setContentView(R.layout.activity_profile);
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+        mProfileImage = (ImageView)findViewById(R.id.profile_image);
     }
 
 
@@ -84,6 +88,12 @@ public class ProfileActivity extends ActionBarActivity {
                     intent.putExtra("lastName", mLastName);
                     intent.putExtra("phoneNumber", mPhoneNumber);
                     intent.putExtra("email", mEmail);
+                    //send profile image
+                    mProfileImage.buildDrawingCache();
+                    Bitmap image = mProfileImage.getDrawingCache();
+                    Bundle extras = new Bundle();
+                    extras.putParcelable("profileImage", image);
+                    intent.putExtra("profileBundle", extras);
                     startActivity(intent);
                 }
             });
@@ -139,8 +149,7 @@ public class ProfileActivity extends ActionBarActivity {
                 mEmailAddrText.setText(mEmail);
 
                 //load image
-                new DownloadImageTask((ImageView) findViewById(R.id.profile_image))
-                        .execute("http://www.mdme.us" + mPictureUrl);
+                new DownloadImageTask(mProfileImage).execute("http://www.mdme.us" + mPictureUrl);
             }
             catch (Exception e)
             {
