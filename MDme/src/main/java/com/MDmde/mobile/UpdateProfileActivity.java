@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,23 +23,33 @@ import android.widget.Toast;
 
 import com.savagelook.android.UrlJsonAsyncTask;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpResponseException;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
 
 public class UpdateProfileActivity extends ActionBarActivity {
 
-    private final String UPDATE_PROFILE_URL = "http://www.mdme.us/api/v1/patients/update";
+//    private final String UPDATE_PROFILE_URL = "http://www.mdme.us/api/v1/patients/update";
+    private final String UPDATE_PROFILE_URL = "http://10.0.2.2:3000/api/v1/patients/update";
     private static final int REQUEST_PHOTO = 0;
 
     private SharedPreferences mPreferences;
@@ -49,6 +61,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
     private ImageView mProfileImage;
     private ImageButton mPhotoButton;
     private int orientation;
+    private Photo mPhoto;
 
 
     @Override
@@ -110,8 +123,20 @@ public class UpdateProfileActivity extends ActionBarActivity {
 
         //load image
         Bundle extras = getIntent().getBundleExtra("profileBundle");
-        Bitmap bmp = extras.getParcelable("profileImage");
-        mProfileImage.setImageBitmap(bmp);
+        try
+        {
+            //check if user took new photo - avoids overwriting new photo preview
+            if (mPhoto == null)
+            {
+                Bitmap bmp = extras.getParcelable("profileImage");
+                mProfileImage.setImageBitmap(bmp);
+            }
+        }
+        catch(Exception e)
+        {
+            Log.e("ProfileImage", "No image to load", e);
+        }
+
 
         Button mUpdateButton = (Button)findViewById(R.id.update_profile_button);
         mUpdateButton.setOnClickListener(new View.OnClickListener()
@@ -124,6 +149,8 @@ public class UpdateProfileActivity extends ActionBarActivity {
                 updateProfileTask.execute(UPDATE_PROFILE_URL + "?api_token=" + mPreferences.getString("ApiToken", ""));
             }
         });
+
+        mProfileImage.invalidate();
 
     }
 
@@ -139,10 +166,30 @@ public class UpdateProfileActivity extends ActionBarActivity {
                 orientation = data.getIntExtra(ProfileCameraActivity.EXTRA_ORIENTATION, Surface.ROTATION_270);
                 if (filename != null)
                 {
-                    mProfileImage.setImageBitmap(BitmapFactory.decodeFile(filename));
-                    mProfileImage.invalidate();
+                    Photo p = new Photo(filename, orientation);
+                    p.setOrientation(orientation);
+                    showPhoto(p);
+
                 }
         }
+    }
+
+    private void showPhoto(Photo p)
+    {
+        BitmapDrawable b = null;
+        if (p != null)
+        {
+            int mOrientation = p.getOrientation();
+            String path = getFileStreamPath(p.getFIlename()).getAbsolutePath();
+            b = PictureUtils.getScaledDrawable(this, path);
+
+            if (p.getOrientation() == Configuration.ORIENTATION_PORTRAIT)
+            {
+                b = PictureUtils.getPortraitDrawable(mProfileImage, b);
+            }
+        }
+        mPhoto = p;
+        mProfileImage.setImageDrawable(b);
     }
 
     private class UpdateProfileTask extends UrlJsonAsyncTask
@@ -154,6 +201,26 @@ public class UpdateProfileActivity extends ActionBarActivity {
         {
             DefaultHttpClient client = new DefaultHttpClient();
             HttpPut put = new HttpPut(urls[0]);
+
+            MultipartEntityBuilder build = MultipartEntityBuilder.create();
+            if (mPhoto != null)
+            {
+                File imgFile = new File(getFileStreamPath(mPhoto.getFIlename()).getAbsolutePath());
+                build.addPart("patient[avatar]", new FileBody(imgFile));
+                HttpEntity ent = build.build();
+                put.setEntity(ent);
+                //submit photo first
+                //TODO see if possible to combine both put requests
+                try
+                {
+                    HttpResponse response = client.execute(put);
+                }
+                catch(Exception e)
+                {
+                    Log.e("ImagePut", "Errors submiting image", e);
+                }
+            }
+
             JSONObject holder = new JSONObject();
             JSONObject userObj = new JSONObject();
             String response = null;
@@ -172,12 +239,12 @@ public class UpdateProfileActivity extends ActionBarActivity {
                     userObj.put("email", mEmailField.getText());
                     userObj.put("phone_number", mPhoneNumberField.getText());
                     holder.put("patient", userObj);
-                    StringEntity se = new StringEntity(holder.toString());
-                    put.setEntity(se);
-
                     //setup request headers
                     put.setHeader("Accept", "application/json");
                     put.setHeader("Content-Type", "application/json");
+                    StringEntity se = new StringEntity(holder.toString());
+                    put.setEntity(se);
+
 
                     ResponseHandler<String> responseHandler = new BasicResponseHandler();
                     response = client.execute(put, responseHandler);

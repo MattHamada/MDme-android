@@ -27,7 +27,8 @@ import java.io.InputStream;
 
 public class ProfileActivity extends ActionBarActivity {
 
-    private final static String PROFILE_URL = "http://www.mdme.us/api/v1/patients/show.json";
+//    private final static String PROFILE_URL = "http://www.mdme.us/api/v1/patients/show.json";
+    private final static String PROFILE_URL = "http://10.0.2.2:3000/api/v1/patients/show.json";
 
     private SharedPreferences mPreferences;
     private String mFirstName;
@@ -149,7 +150,9 @@ public class ProfileActivity extends ActionBarActivity {
                 mEmailAddrText.setText(mEmail);
 
                 //load image
-                new DownloadImageTask(mProfileImage).execute("http://www.mdme.us" + mPictureUrl);
+                //new DownloadImageTask(mProfileImage).execute("http://www.mdme.us" + mPictureUrl);
+                new DownloadImageTask(mProfileImage).execute("http://10.0.2.2:3000" + mPictureUrl);
+
             }
             catch (Exception e)
             {

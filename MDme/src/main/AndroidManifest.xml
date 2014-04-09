@@ -36,8 +36,7 @@
         </activity>
         <activity
             android:name="com.MDmde.mobile.UpdateProfileActivity"
-            android:label="@string/title_activity_update_profile"
-            android:noHistory="true" >
+            android:label="@string/title_activity_update_profile">
         </activity>
         <activity
             android:name="com.MDmde.mobile.ProfileCameraActivity"
