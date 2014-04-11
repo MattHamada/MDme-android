@@ -54,6 +54,10 @@
             android:name="com.MDmde.mobile.DepartmentIndexActivity"
             android:label="@string/title_activity_department_index" >
         </activity>
+        <activity
+            android:name="com.MDmde.mobile.DoctorShowActivity"
+            android:label="@string/title_activity_doctor_show" >
+        </activity>
     </application>
 
 </manifest>
