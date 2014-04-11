@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ public class DoctorIndexActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_index);
+        setTitle(getIntent().getStringExtra("departmentName"));
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
@@ -91,20 +94,6 @@ public class DoctorIndexActivity extends ActionBarActivity {
         {
             try
             {
-                //make sure api key still correct
-                Boolean validApi = json.getBoolean("success");
-                if (!validApi)
-                {
-                    SharedPreferences.Editor editor = mPreferences.edit();
-                    //reset auth token
-                    editor.remove("ApiToken");
-                    editor.commit();
-                    //launch Login Activity
-                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
-                    startActivity(intent3);
-                    finish();
-                }
-
                 //add doctors to list
                 JSONArray jsonDoctors = json.getJSONObject("data").getJSONArray("doctors");
                 int length = jsonDoctors.length();
@@ -120,8 +109,21 @@ public class DoctorIndexActivity extends ActionBarActivity {
                 }
 
                 //add to gridview
-                GridView gridview = (GridView)findViewById(R.id.doctor_index_grid_view);
+                final GridView gridview = (GridView)findViewById(R.id.doctor_index_grid_view);
                 gridview.setAdapter(new DoctorAdapater(getApplicationContext(), doctors));
+
+                //setup listener
+                gridview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        int doctorId = ((Doctor)gridview.getAdapter().getItem(position)).getId();
+                        Intent intent = new Intent(getApplicationContext(), DoctorShowActivity.class);
+                        intent.putExtra("doctorId", doctorId);
+                        startActivityForResult(intent, 0);
+                    }
+                });
             }
             catch(Exception e)
             {

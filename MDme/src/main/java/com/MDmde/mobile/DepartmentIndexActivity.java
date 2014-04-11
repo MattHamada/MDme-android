@@ -26,7 +26,7 @@ import java.util.List;
 public class DepartmentIndexActivity extends ActionBarActivity {
 
     //private final static String DEPARTMENTS_URL = "http://www.mdme.us:3000/api/v1/patients/doctors/departments.json";
-    private final static String DEPARTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/doctors/departments.json";
+    private final static String DEPARTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/departments.json";
 
     private SharedPreferences mPreferences;
 
@@ -34,7 +34,7 @@ public class DepartmentIndexActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_index);
-
+        setTitle("Departments");
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
 
@@ -94,18 +94,6 @@ public class DepartmentIndexActivity extends ActionBarActivity {
             try
             {
                 //make sure api key still correct
-                Boolean validApi = json.getBoolean("success");
-                if (!validApi)
-                {
-                    SharedPreferences.Editor editor = mPreferences.edit();
-                    //reset auth token
-                    editor.remove("ApiToken");
-                    editor.commit();
-                    //launch Login Activity
-                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
-                    startActivity(intent3);
-                    finish();
-                }
 
                 //add department names to list
                 JSONArray jsonDepartments = json.getJSONObject("data").getJSONArray("departments");

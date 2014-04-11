@@ -10,23 +10,21 @@
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/profile_image"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="24dp"/>
 
         <TextView android:id="@+id/profile_full_name"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginBottom="16dp"
+                  android:layout_marginBottom="12dp"
                   android:layout_gravity="center_horizontal"
                   android:textSize="20sp"/>
 
         <TextView android:id="@+id/profile_email_address"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_marginBottom="16dp"
+                  android:layout_marginBottom="12dp"
                   android:layout_gravity="center_horizontal"
                   android:textSize="20sp"/>
-
-
 
         <TextView android:id="@+id/profile_phone_number"
                   android:layout_width="wrap_content"

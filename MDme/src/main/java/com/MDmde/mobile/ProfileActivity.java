@@ -43,6 +43,7 @@ public class ProfileActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setTitle("My Profile");
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
         mProfileImage = (ImageView)findViewById(R.id.profile_image);
@@ -122,19 +123,6 @@ public class ProfileActivity extends ActionBarActivity {
         {
             try
             {
-                //make sure api key still correct
-                Boolean validApi = json.getBoolean("success");
-                if (!validApi)
-                {
-                    SharedPreferences.Editor editor = mPreferences.edit();
-                    //reset auth token
-                    editor.remove("ApiToken");
-                    editor.commit();
-                    //launch Login Activity
-                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
-                    startActivity(intent3);
-                    finish();
-                }
                 mFirstName = json.getJSONObject("data").getJSONObject("patient").getString("first_name");
                 mLastName = json.getJSONObject("data").getJSONObject("patient").getString("last_name");
                 mEmail = json.getJSONObject("data").getJSONObject("patient").getString("email");
