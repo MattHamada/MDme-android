@@ -3,6 +3,8 @@ package com.MDmde.mobile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
 /**
  * Created by ermacaz on 4/8/14.
  */
@@ -11,6 +13,7 @@ public class Photo
     private static final String JSON_FILENAME = "filename";
     private static final String JSON_ORIENTATION = "orientation";
 
+    //filename is really absolute path to file
     private String mFilename;
     private int mOrientation;
 
@@ -47,5 +50,11 @@ public class Photo
     public String getFIlename()
     {
         return mFilename;
+    }
+
+    public void deletePhoto()
+    {
+        File f = new File(mFilename);
+        f.delete();
     }
 }

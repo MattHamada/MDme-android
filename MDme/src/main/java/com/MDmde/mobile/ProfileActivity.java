@@ -139,7 +139,7 @@ public class ProfileActivity extends ActionBarActivity {
                 mLastName = json.getJSONObject("data").getJSONObject("patient").getString("last_name");
                 mEmail = json.getJSONObject("data").getJSONObject("patient").getString("email");
                 mPhoneNumber = json.getJSONObject("data").getJSONObject("patient").getString("phone_number");
-                mPictureUrl = json.getJSONObject("data").getJSONObject("patient").getString("avatar_thumb_url");
+                mPictureUrl = json.getJSONObject("data").getJSONObject("patient").getString("avatar_medium_url");
 
 
                 TextView mFullNameText = (TextView) findViewById(R.id.profile_full_name);

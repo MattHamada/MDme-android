@@ -273,6 +273,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
                 {
 //                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
 //                    startActivity(intent);
+                    mPhoto.deletePhoto();
                     finish();
                     Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
                 }
