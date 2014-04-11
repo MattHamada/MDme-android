@@ -88,6 +88,7 @@ public class HomeActivity extends ActionBarActivity {
         {
             Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
             startActivityForResult(intent, 0);
+            finish();
         }
     }
 
@@ -123,7 +124,7 @@ public class HomeActivity extends ActionBarActivity {
                     startActivity(intent3);
                     finish();
                 }
-                //add task names t list
+                //add task names to list
                 JSONArray jsonTasks = json.getJSONObject("data").getJSONArray("tasks");
                 int length = jsonTasks.length();
                 List<String> taskTitles = new ArrayList<String>(length);
@@ -134,42 +135,44 @@ public class HomeActivity extends ActionBarActivity {
                 }
 
                 //add list of string to listview
-                ListView tasksListView = (ListView)findViewById((R.id.tasks_list_view));
+                ListView tasksListView = (ListView) findViewById((R.id.tasks_list_view));
                 if (tasksListView != null)
                 {
                     tasksListView.setAdapter(new ArrayAdapter<String>(HomeActivity.this,
-                                        android.R.layout.simple_list_item_1, taskTitles));
-                }
-                //add listener for choosing an item in list
-                tasksListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-                {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                            android.R.layout.simple_list_item_1, taskTitles));
+                    //add listener for choosing an item in list
+                    tasksListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
                     {
-                        switch(position)
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                         {
-                            case 0:
-                                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                                startActivity(intent);
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                SharedPreferences.Editor editor = mPreferences.edit();
-                                //reset auth token
-                                editor.remove("ApiToken");
-                                editor.commit();
-                                //launch Login Activity
-                                Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
-                                startActivity(intent3);
-                                finish();
-                                break;
+                            switch (position)
+                            {
+                                case 0:
+                                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                    startActivity(intent);
+                                    break;
+                                case 1:
+                                    break;
+                                case 2:
+                                    Intent intent2 = new Intent(getApplicationContext(), DepartmentIndexActivity.class);
+                                    startActivity(intent2);
+                                    break;
+                                case 3:
+                                    SharedPreferences.Editor editor = mPreferences.edit();
+                                    //reset auth token
+                                    editor.remove("ApiToken");
+                                    editor.commit();
+                                    //launch Login Activity
+                                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
+                                    startActivity(intent3);
+                                    finish();
+                                    break;
 
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
             catch (Exception e)
             {

@@ -271,8 +271,8 @@ public class UpdateProfileActivity extends ActionBarActivity {
             {
                 if (json.getBoolean("success"))
                 {
-                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+//                    startActivity(intent);
                     finish();
                     Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
                 }

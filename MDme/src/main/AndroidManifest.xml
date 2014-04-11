@@ -4,7 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature    android:name="android.hardware.camera"   />
+
+    <uses-feature android:name="android.hardware.camera" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -36,11 +38,21 @@
         </activity>
         <activity
             android:name="com.MDmde.mobile.UpdateProfileActivity"
-            android:label="@string/title_activity_update_profile">
+            android:label="@string/title_activity_update_profile"
+            android:noHistory="true" >
         </activity>
         <activity
             android:name="com.MDmde.mobile.ProfileCameraActivity"
-            android:label="@string/title_activity_profile_camera" >
+            android:label="@string/title_activity_profile_camera"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name="com.MDmde.mobile.DoctorIndexActivity"
+            android:label="@string/title_activity_doctor_index" >
+        </activity>
+        <activity
+            android:name="com.MDmde.mobile.DepartmentIndexActivity"
+            android:label="@string/title_activity_department_index" >
         </activity>
     </application>
 
