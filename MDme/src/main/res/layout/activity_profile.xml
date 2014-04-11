@@ -5,10 +5,10 @@
         android:orientation="vertical">
 
         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
-            android:layout_width="300px"
-            android:layout_height="300px"
             android:id="@+id/profile_image"
             android:layout_marginBottom="32dp"/>
 
@@ -17,14 +17,14 @@
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="16dp"
                   android:layout_gravity="center_horizontal"
-                  android:textSize="32dp"/>
+                  android:textSize="20sp"/>
 
         <TextView android:id="@+id/profile_email_address"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="16dp"
                   android:layout_gravity="center_horizontal"
-                  android:textSize="32dp"/>
+                  android:textSize="20sp"/>
 
 
 
@@ -32,7 +32,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="center_horizontal"
-                  android:textSize="32dp"/>
+                  android:textSize="20sp"/>
 
         <Button android:id="@+id/edit_profile_button"
                 android:layout_width="wrap_content"
