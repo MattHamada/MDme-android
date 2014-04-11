@@ -35,7 +35,7 @@ import java.util.List;
 public class HomeActivity extends ActionBarActivity {
 
     //private final static String TASKS_URL = "http://www.mdme.us/api/v1/patients.json";
-    private final static String TASKS_URL = "http://10.0.2.2:3000/api/v1/patients.json";
+    private final static String TASKS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients.json";
 
     private SharedPreferences mPreferences;
 

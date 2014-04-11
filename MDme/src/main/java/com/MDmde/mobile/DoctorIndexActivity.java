@@ -23,7 +23,7 @@ import java.util.List;
 public class DoctorIndexActivity extends ActionBarActivity {
 
     //private static final String DOCTORS_URL = "http://www.mdme.us/api/v1/patients/doctors.json";
-    private static final String DOCTORS_URL = "http://10.0.2.2:3000/api/v1/patients/doctors.json";
+    private static final String DOCTORS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/doctors.json";
 
     private SharedPreferences mPreferences;
 
@@ -113,7 +113,7 @@ public class DoctorIndexActivity extends ActionBarActivity {
                 for (int i = 0; i < length; i++)
                 {
                     String name = jsonDoctors.getJSONObject(i).getString("full_name");
-                    String imageUrl = "http://10.0.2.2:3000" + jsonDoctors.getJSONObject(i).
+                    String imageUrl = WebserverUrl.ROOT_URL + jsonDoctors.getJSONObject(i).
                                                                 getString("avatar_thumb_url");
                     int id = jsonDoctors.getJSONObject(i).getInt("id");
                     doctors.add(new Doctor(imageUrl, name, id));

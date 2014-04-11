@@ -26,7 +26,7 @@ import java.util.List;
 public class DepartmentIndexActivity extends ActionBarActivity {
 
     //private final static String DEPARTMENTS_URL = "http://www.mdme.us:3000/api/v1/patients/doctors/departments.json";
-    private final static String DEPARTMENTS_URL = "http://10.0.2.2:3000/api/v1/patients/doctors/departments.json";
+    private final static String DEPARTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/doctors/departments.json";
 
     private SharedPreferences mPreferences;
 

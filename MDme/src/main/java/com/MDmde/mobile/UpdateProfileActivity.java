@@ -49,7 +49,7 @@ import java.util.Iterator;
 public class UpdateProfileActivity extends ActionBarActivity {
 
 //    private final String UPDATE_PROFILE_URL = "http://www.mdme.us/api/v1/patients/update";
-    private final String UPDATE_PROFILE_URL = "http://10.0.2.2:3000/api/v1/patients/update";
+    private final String UPDATE_PROFILE_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/update";
     private static final int REQUEST_PHOTO = 0;
 
     private SharedPreferences mPreferences;
