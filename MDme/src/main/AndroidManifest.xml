@@ -58,6 +58,10 @@
             android:name="com.MDmde.mobile.DoctorShowActivity"
             android:label="@string/title_activity_doctor_show" >
         </activity>
+        <activity
+            android:name="com.MDmde.mobile.AppointmentMenuActivity"
+            android:label="@string/title_activity_appointment_menu" >
+        </activity>
     </application>
 
 </manifest>

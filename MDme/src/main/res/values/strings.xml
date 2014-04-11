@@ -26,5 +26,6 @@
     <string name="title_activity_doctor_index">DoctorIndexActivity</string>
     <string name="title_activity_department_index">DepartmentIndexActivity</string>
     <string name="title_activity_doctor_show">DoctorShowActivity</string>
+    <string name="title_activity_appointment_menu">AppointmentMenuActivity</string>
 
 </resources>
