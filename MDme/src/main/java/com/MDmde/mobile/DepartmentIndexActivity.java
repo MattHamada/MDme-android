@@ -26,7 +26,7 @@ import java.util.List;
 public class DepartmentIndexActivity extends ActionBarActivity {
 
     //private final static String DEPARTMENTS_URL = "http://www.mdme.us:3000/api/v1/patients/doctors/departments.json";
-    private final static String DEPARTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/departments.json";
+    private final String DEPARTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/departments.json";
 
     private SharedPreferences mPreferences;
 
@@ -93,7 +93,6 @@ public class DepartmentIndexActivity extends ActionBarActivity {
         {
             try
             {
-                //make sure api key still correct
 
                 //add department names to list
                 JSONArray jsonDepartments = json.getJSONObject("data").getJSONArray("departments");
