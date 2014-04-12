@@ -154,6 +154,8 @@ public class HomeActivity extends ActionBarActivity {
                                     startActivity(intent);
                                     break;
                                 case 1:
+                                    Intent intent1 = new Intent(getApplicationContext(), AppointmentMenuActivity.class);
+                                    startActivity(intent1);
                                     break;
                                 case 2:
                                     Intent intent2 = new Intent(getApplicationContext(), DepartmentIndexActivity.class);
@@ -169,7 +171,6 @@ public class HomeActivity extends ActionBarActivity {
                                     startActivity(intent3);
                                     finish();
                                     break;
-
                             }
                         }
                     });
