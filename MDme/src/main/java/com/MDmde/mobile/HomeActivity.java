@@ -167,7 +167,7 @@ public class HomeActivity extends ActionBarActivity {
                                     editor.remove("ApiToken");
                                     editor.commit();
                                     //launch Login Activity
-                                    Intent intent3 = new Intent(getApplicationContext(), WelcomeActivity.class);
+                                    Intent intent3 = new Intent(getApplicationContext(), LoginActivity.class);
                                     startActivity(intent3);
                                     finish();
                                     break;
