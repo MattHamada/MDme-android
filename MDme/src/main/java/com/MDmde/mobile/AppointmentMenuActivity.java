@@ -112,6 +112,8 @@ public class AppointmentMenuActivity extends ActionBarActivity {
                             switch(position)
                             {
                                 case 0:
+                                    Intent intent = new Intent(getApplicationContext(), ConfirmedAppointmentsActivity.class);
+                                    startActivityForResult(intent, 0);
                                     break;
                                 case 1:
                                     break;
