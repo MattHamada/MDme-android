@@ -71,7 +71,7 @@ public class DepartmentIndexActivity extends ActionBarActivity {
         }
         else
         {
-            Intent intent = new Intent(DepartmentIndexActivity.this, WelcomeActivity.class);
+            Intent intent = new Intent(DepartmentIndexActivity.this, LoginActivity.class);
             startActivityForResult(intent, 0);
             finish();
         }

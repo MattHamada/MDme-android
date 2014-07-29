@@ -158,7 +158,7 @@ public class HomeActivity extends ActionBarActivity {
                                     startActivity(intent1);
                                     break;
                                 case 2:
-                                    Intent intent2 = new Intent(getApplicationContext(), DepartmentIndexActivity.class);
+                                    Intent intent2 = new Intent(getApplicationContext(), ClinicsIndexActivity.class);
                                     startActivity(intent2);
                                     break;
                                 case 3:
