@@ -246,7 +246,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
                     userObj.put("email", mEmailField.getText());
                     userObj.put("home_phone", mHomePhoneField.getText());
                     userObj.put("work_phone", mWorkPhoneField.getText());
-                    userObj.put("cell_phone", mCellPhoneField.getText());
+                    userObj.put("mobile_phone", mCellPhoneField.getText());
                     holder.put("patient", userObj);
                     //setup request headers
                     put.setHeader("Accept", "application/json");
@@ -282,9 +282,12 @@ public class UpdateProfileActivity extends ActionBarActivity {
                 {
 //                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
 //                    startActivity(intent);
-                    mPhoto.deletePhoto();
-                    finish();
+                    if (mPhoto != null)
+                    {
+                        mPhoto.deletePhoto();
+                    }
                     Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
+                    finish();
                 }
                 else
                 {
@@ -303,7 +306,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
 
                 }
             }
-            catch(Exception e)
+            catch(JSONException e)
             {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             }
