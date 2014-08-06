@@ -56,7 +56,9 @@ public class UpdateProfileActivity extends ActionBarActivity {
 
     private EditText mFirstNameField;
     private EditText mLastNameField;
-    private EditText mPhoneNumberField;
+    private EditText mHomePhoneField;
+    private EditText mWorkPhoneField;
+    private EditText mCellPhoneField;
     private EditText mEmailField;
     private ImageView mProfileImage;
     private ImageButton mPhotoButton;
@@ -112,14 +114,18 @@ public class UpdateProfileActivity extends ActionBarActivity {
         mFirstNameField =   (EditText)findViewById(R.id.first_name_edit);
         mLastNameField =    (EditText)findViewById(R.id.last_name_edit);
         mEmailField =       (EditText)findViewById(R.id.email_edit);
-        mPhoneNumberField = (EditText)findViewById(R.id.phone_number_edit);
+        mHomePhoneField= (EditText)findViewById(R.id.home_phone_edit);
+        mWorkPhoneField= (EditText)findViewById(R.id.work_phone_edit);
+        mCellPhoneField= (EditText)findViewById(R.id.cell_phone_edit);
         mProfileImage =     (ImageView)findViewById(R.id.edit_profile_image);
 
         //populate fields with current data
         Intent intent = getIntent();
         mFirstNameField.setText(intent.getStringExtra("firstName"));
         mLastNameField.setText(intent.getStringExtra("lastName"));
-        mPhoneNumberField.setText(intent.getStringExtra("phoneNumber"));
+        mHomePhoneField.setText(intent.getStringExtra("homePhone"));
+        mWorkPhoneField.setText(intent.getStringExtra("workPhone"));
+        mCellPhoneField.setText(intent.getStringExtra("cellPhone"));
         mEmailField.setText(intent.getStringExtra("email"));
 
         //load image
@@ -238,7 +244,9 @@ public class UpdateProfileActivity extends ActionBarActivity {
                     userObj.put("first_name", mFirstNameField.getText());
                     userObj.put("last_name", mLastNameField.getText());
                     userObj.put("email", mEmailField.getText());
-                    userObj.put("phone_number", mPhoneNumberField.getText());
+                    userObj.put("home_phone", mHomePhoneField.getText());
+                    userObj.put("work_phone", mWorkPhoneField.getText());
+                    userObj.put("cell_phone", mCellPhoneField.getText());
                     holder.put("patient", userObj);
                     //setup request headers
                     put.setHeader("Accept", "application/json");

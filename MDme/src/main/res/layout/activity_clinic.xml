@@ -1,16 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/MDmeGrey"
     tools:context="com.MDmde.mobile.ClinicActivity">
 
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/clinic_profile_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp"
+        android:text="Massachusetts General Hospital"
+        android:gravity="center"/>
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="@string/location"
+        android:textSize="16sp"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+            <TextView
+                android:id="@+id/clinic_profile_address1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MGH"/>
+            <TextView
+                android:id="@+id/clinic_profile_address2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="55 fruit street"/>
+            <TextView
+                android:id="@+id/clinic_profile_address3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9th floor"/>
+            <TextView
+                android:id="@+id/clinic_profile_city_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boston, Massachusetts"/>
+            <TextView
+                android:id="@+id/clinic_profile_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="United States"/>
+            <TextView
+                android:id="@+id/clinic_profile_zipcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="02114"/>
+        </LinearLayout>
+
+        
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

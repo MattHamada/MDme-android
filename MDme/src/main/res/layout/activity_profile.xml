@@ -26,7 +26,19 @@
                   android:layout_gravity="center_horizontal"
                   android:textSize="20sp"/>
 
-        <TextView android:id="@+id/profile_phone_number"
+        <TextView android:id="@+id/profile_home_phone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="20sp"/>
+
+        <TextView android:id="@+id/profile_work_phone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="20sp"/>
+
+        <TextView android:id="@+id/profile_cell_phone"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_gravity="center_horizontal"

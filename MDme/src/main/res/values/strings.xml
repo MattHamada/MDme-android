@@ -17,7 +17,9 @@
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
     <string name="email">Email:</string>
-    <string name="phone_number">Phone#:</string>
+    <string name="home_phone_number">Home Phone#:</string>
+    <string name="work_phone_number">Work Phone#:</string>
+    <string name="cell_phone_number">Cell Phone#:</string>
     <string name="edit">Edit</string>
     <string name="update">Update</string>
     <string name="title_activity_profile_camera">ProfileCameraActivity</string>
@@ -30,5 +32,6 @@
     <string name="title_activity_confirmed_appointments">ConfirmedAppointmentsActivity</string>
     <string name="title_activity_clinics">ClinicsActivity</string>
     <string name="title_activity_clinic">ClinicActivity</string>
+    <string name="location">Location</string>
 
 </resources>

@@ -34,7 +34,9 @@ public class ProfileActivity extends ActionBarActivity {
     private String mFirstName;
     private String mLastName;
     private String mEmail;
-    private String mPhoneNumber;
+    private String mHomePhone;
+    private String mCellPhone;
+    private String mWorkPhone;
     private String mPictureUrl;
     private ImageView mProfileImage;
 
@@ -88,7 +90,9 @@ public class ProfileActivity extends ActionBarActivity {
                     Intent intent = new Intent(getApplicationContext(), UpdateProfileActivity.class);
                     intent.putExtra("firstName", mFirstName);
                     intent.putExtra("lastName", mLastName);
-                    intent.putExtra("phoneNumber", mPhoneNumber);
+                    intent.putExtra("homePhone", mHomePhone);
+                    intent.putExtra("workPhone", mWorkPhone);
+                    intent.putExtra("cellPhone", mCellPhone);
                     intent.putExtra("email", mEmail);
                     //send profile image
                     mProfileImage.buildDrawingCache();
@@ -126,14 +130,20 @@ public class ProfileActivity extends ActionBarActivity {
                 mFirstName = json.getJSONObject("data").getJSONObject("patient").getString("first_name");
                 mLastName = json.getJSONObject("data").getJSONObject("patient").getString("last_name");
                 mEmail = json.getJSONObject("data").getJSONObject("patient").getString("email");
-                mPhoneNumber = json.getJSONObject("data").getJSONObject("patient").getString("phone_number");
+                mHomePhone = json.getJSONObject("data").getJSONObject("patient").getString("home_phone");
+                mWorkPhone = json.getJSONObject("data").getJSONObject("patient").getString("work_phone");
+                mCellPhone = json.getJSONObject("data").getJSONObject("patient").getString("mobile_phone");
                 mPictureUrl = json.getJSONObject("data").getJSONObject("patient").getString("avatar_medium_url");
 
 
                 TextView mFullNameText = (TextView) findViewById(R.id.profile_full_name);
                 mFullNameText.setText(mFirstName + " " + mLastName);
-                TextView mPhoneNumText = (TextView) findViewById(R.id.profile_phone_number);
-                mPhoneNumText.setText(mPhoneNumber);
+                TextView mHomePhoneText = (TextView) findViewById(R.id.profile_home_phone);
+                mHomePhoneText.setText(mHomePhone);
+                TextView mWorkPhoneText = (TextView) findViewById(R.id.profile_work_phone);
+                mWorkPhoneText.setText(mWorkPhone);
+                TextView mCellPhoneText = (TextView) findViewById(R.id.profile_cell_phone);
+                mCellPhoneText.setText(mCellPhone);
                 TextView mEmailAddrText = (TextView) findViewById(R.id.profile_email_address);
                 mEmailAddrText.setText(mEmail);
 
