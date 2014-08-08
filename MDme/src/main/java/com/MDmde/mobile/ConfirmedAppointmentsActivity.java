@@ -92,6 +92,10 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
                 JSONArray jsonAppointments = json.getJSONObject("data").getJSONArray("appointments");
                 int length = jsonAppointments.length();
                 final List<Appointment> appointments = new ArrayList<Appointment>(length);
+                if (length == 0)
+                {
+                    Toast.makeText(context, json.getString("info"), Toast.LENGTH_LONG).show();
+                }
                 for (int i = 0; i < length; i++)
                 {
                     int id = jsonAppointments.getJSONObject(i).getInt("id");
