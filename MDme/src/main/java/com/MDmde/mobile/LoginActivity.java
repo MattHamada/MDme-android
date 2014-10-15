@@ -1,5 +1,6 @@
 package com.MDmde.mobile;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.savagelook.android.UrlJsonAsyncTask;
 
 import org.apache.http.client.HttpResponseException;
@@ -39,6 +43,18 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
         setTitle("Login");
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        int playservAvail = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (playservAvail != ConnectionResult.SUCCESS)
+        {
+            Dialog playDialog = GooglePlayServicesUtil.getErrorDialog(playservAvail, this, 0);
+            playDialog.show();
+        }
+
     }
 
 

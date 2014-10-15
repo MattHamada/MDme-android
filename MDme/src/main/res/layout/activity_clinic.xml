@@ -58,7 +58,7 @@
                 android:id="@+id/clinic_profile_city_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Boston, Massachusetts"/>
+                android:text="Boston, Ma"/>
             <TextView
                 android:id="@+id/clinic_profile_country"
                 android:layout_width="wrap_content"
