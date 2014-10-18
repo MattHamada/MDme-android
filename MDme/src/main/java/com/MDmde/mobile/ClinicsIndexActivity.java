@@ -91,24 +91,43 @@ public class ClinicsIndexActivity extends ActionBarActivity {
                 //add clinic names to list
                 JSONArray jsonClinics = json.getJSONObject("data").getJSONArray("clinics");
                 int length = jsonClinics.length();
-                final List<String> clinicNames = new ArrayList<String>(length);
+                final List<Clinic> clinics = new ArrayList<Clinic>(length);
                 for (int i = 0; i < length; i++) {
-                    clinicNames.add(jsonClinics.getJSONObject(i).getString("name"));
+                    int id = jsonClinics.getJSONObject(i).getInt("id");
+                    String name = jsonClinics.getJSONObject(i).getString("name");
+                    String address1 = jsonClinics.getJSONObject(i).getString("address1");
+                    String address2 = jsonClinics.getJSONObject(i).getString("address2");
+                    String address3 = jsonClinics.getJSONObject(i).getString("address3");
+                    String city = jsonClinics.getJSONObject(i).getString("city");
+                    String state = jsonClinics.getJSONObject(i).getString("state");
+                    String country = jsonClinics.getJSONObject(i).getString("country");
+                    String zipcode = jsonClinics.getJSONObject(i).getString("zipcode");
+                    String phone_number = jsonClinics.getJSONObject(i).getString("phone_number");
+                    String fax_number = jsonClinics.getJSONObject(i).getString("fax_number");
+                    String ne_latitude = jsonClinics.getJSONObject(i).getString("ne_latitude");
+                    String ne_longitude = jsonClinics.getJSONObject(i).getString("ne_longitude");
+                    String sw_latitude = jsonClinics.getJSONObject(i).getString("sw_latitude");
+                    String sw_longitude = jsonClinics.getJSONObject(i).getString("sw_longitude");
+
+                    clinics.add(new Clinic(id, name, address1, address2, address3, city, state,
+                                           country, zipcode, phone_number, fax_number, ne_latitude,
+                                           ne_longitude, sw_latitude, sw_longitude));
                 }
 
                 //add list to listview
                 final ListView clinicsListView = (ListView)findViewById(R.id.clinicsindex_list_view);
                 if (clinicsListView != null)
                 {
-                    clinicsListView.setAdapter(new ArrayAdapter<String>(ClinicsIndexActivity.this,
-                            android.R.layout.simple_list_item_1, clinicNames));
+                    clinicsListView.setAdapter(new ArrayAdapter<Clinic>(ClinicsIndexActivity.this,
+                            android.R.layout.simple_list_item_1, clinics));
                     //add listeners to each item
                     clinicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             String clinicName = clinicsListView.getAdapter().getItem(position).toString();
                             Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
-                            intent.putExtra("clinicName", clinicName);
+                            intent.putExtra("clinic", ((Clinic)clinicsListView.getAdapter().
+                                                                                getItem(position)));
                             startActivity(intent);
                         }
                     });
