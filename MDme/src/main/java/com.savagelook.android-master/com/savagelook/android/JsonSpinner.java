@@ -1,15 +1,15 @@
 package com.savagelook.android;
 
-import java.io.IOException;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import java.io.IOException;
 
 public class JsonSpinner extends Spinner {
 	private static final String NAMESPACE = "http://schemas.android.com/apk/lib/com.savagelook.android";
