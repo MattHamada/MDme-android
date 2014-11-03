@@ -24,7 +24,7 @@ import java.util.List;
 
 public class AppointmentMenuActivity extends ActionBarActivity {
 
-    private final String APPOINTMENT_MENU_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/appointments/tasks.json";
+    private final String APPOINTMENT_MENU_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/appointments/index.json";
     private SharedPreferences mPreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
