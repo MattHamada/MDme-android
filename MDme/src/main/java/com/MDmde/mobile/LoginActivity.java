@@ -121,7 +121,7 @@ public class LoginActivity extends ActionBarActivity {
                 {
                     //setup return values incase something goes wrong
                     json.put("success", false);
-                    json.put("info", "Something went wrong. Retry!");
+                    json.put("info", "Could not connect to server.");
                     //Add login info to params
                     userObj.put("email", mUserEmail);
                     userObj.put("password", mUserPassword);
@@ -166,8 +166,9 @@ public class LoginActivity extends ActionBarActivity {
                 {
                     //everything ok
                     SharedPreferences.Editor editor = mPreferences.edit();
-                    //save auth token to shared prefs
+                    //save auth token and patient_id to shared prefs
                     editor.putString("ApiToken", json.getJSONObject("data").getString("api_token"));
+                    editor.putString("patientId", json.getJSONObject("data").getString("id"));
                     editor.commit();
 
                     //launch home activity, close this one
