@@ -17,7 +17,6 @@
     <permission
         android:name="com.MDmde.mobile.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-
     <uses-permission android:name="com.MDmde.mobile.permission.C2D_MESSAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -39,14 +38,14 @@
             android:value="AIzaSyAqrogv2iaeEnYFTyLg6flbqa1_wuApgqc" />
 
         <receiver
-            android:name="com.MDmde.mobile.GcmBroadcastReceiver"
+            android:name=".GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-
-                <category android:name="com.example.gcm" />
+                <category android:name="com.MDmde.mobile" />
             </intent-filter>
         </receiver>
+        <service android:name=".GcmIntentService" />
 
         <activity
             android:name="com.MDmde.mobile.LoginActivity"
