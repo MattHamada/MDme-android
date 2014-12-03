@@ -107,7 +107,7 @@ public class HomeActivity extends ActionBarActivity {
                // turnOnNotifications(API_NOTIFICATIONS_URL);
 
 //                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-//                startActivityForResult(intent, 0);
+//                startActivityForResult(intent, 0);, String title
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -127,7 +127,7 @@ public class HomeActivity extends ActionBarActivity {
         }
         else
         {
-            Intent intent = new Intent(HomeActivity.this, WelcomeActivity.class);
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivityForResult(intent, 0);
             finish();
         }

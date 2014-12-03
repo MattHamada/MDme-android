@@ -51,12 +51,57 @@ public class GcmIntentService extends IntentService {
             }
             else if (GoogleCloudMessaging.
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-                sendNotification("Message type message: " + extras.toString());
+                String message = extras.getString("message");
+                NotificationTypes type = NotificationTypes.valueOf(
+                        (extras.getString("type")).toUpperCase());
+                switch (type) {
+                    case DELAY:
+                        sendDelayNotification(message);
+                    case READY:
+                        sendReadyNotification(message);
+
+                }
+                //sendNotification(message);
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
+
+    private void sendReadyNotification(String msg) {
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, HomeActivity.class), 0);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_gcm)
+                        .setContentTitle("Appointment Ready")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                        .setContentText(msg);
+
+        //mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
+    // shows notification of delayed appointment
+    // TODO should bring user to appointment activity or a confirm/deny delay activity
+    private void sendDelayNotification(String msg) {
+        mNotificationManager = (NotificationManager)
+                this.getSystemService(Context.NOTIFICATION_SERVICE);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, AppointmentMenuActivity.class), 0);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.ic_stat_gcm)
+                    .setContentTitle("Appointment Delayed")
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                    .setContentText(msg);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
     // Put the message into a notification and post it.
     // This is just one simple example of what you might choose to do with
     // a GCM message.
@@ -67,13 +112,18 @@ public class GcmIntentService extends IntentService {
                 new Intent(this, HomeActivity.class), 0);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.ic_stat_gcm)
-                    .setContentTitle("GCM Notification")
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
-                    .setContentText(msg);
+                        .setSmallIcon(R.drawable.ic_stat_gcm)
+                        .setContentTitle("GCM Notification")
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                        .setContentText(msg);
 
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
+    private enum NotificationTypes {
+        DELAY,
+        READY
     }
 
 }
