@@ -67,7 +67,7 @@ public class DoctorShowActivity extends ActionBarActivity {
         }
         else
         {
-            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivityForResult(intent, 0);
         }
     }

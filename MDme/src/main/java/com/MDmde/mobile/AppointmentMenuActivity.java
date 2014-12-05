@@ -31,7 +31,6 @@ public class AppointmentMenuActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setTitle("Appointments Menu");
         setContentView(R.layout.activity_appointment_menu);
-
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
 

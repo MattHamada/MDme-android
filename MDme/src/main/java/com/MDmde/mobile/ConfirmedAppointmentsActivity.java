@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -107,13 +109,25 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
                     appointments.add(apt);
                 }
 
-                //TODO may need to make appointment class to store id and time for easier api retrieval of show
                 //add to listview
                 final ListView appointmentsListView = (ListView)findViewById(R.id.confirmed_appointments_list_view);
                 if (appointmentsListView != null)
                 {
                     appointmentsListView.setAdapter(new ArrayAdapter<Appointment>(ConfirmedAppointmentsActivity.this,
                             android.R.layout.simple_list_item_1, appointments));
+
+                    //add listener
+                    appointmentsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            int appointmentId = ((Appointment)appointmentsListView
+                                    .getAdapter().getItem(position)).getId();
+                            Intent intent = new Intent(getApplicationContext(),
+                                    AppointmentShowActivity.class);
+                            intent.putExtra("appointmentId", appointmentId);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
             catch (Exception e)

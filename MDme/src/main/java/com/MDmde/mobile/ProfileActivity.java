@@ -142,7 +142,6 @@ public class ProfileActivity extends ActionBarActivity {
                 mEmailAddrText.setText(mEmail);
 
                 //load image
-                //new DownloadImageTask(mProfileImage).execute("http://www.mdme.us" + mPictureUrl);
                 new DownloadImageTask(mProfileImage).execute(WebserverUrl.ROOT_URL + mPictureUrl);
 
             }
