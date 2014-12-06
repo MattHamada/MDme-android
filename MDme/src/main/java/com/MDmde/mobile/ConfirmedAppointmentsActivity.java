@@ -124,7 +124,7 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
                                     .getAdapter().getItem(position)).getId();
                             Intent intent = new Intent(getApplicationContext(),
                                     AppointmentShowActivity.class);
-                            intent.putExtra("appointmentId", appointmentId);
+                            intent.putExtra("appointment_id", appointmentId);
                             startActivity(intent);
                         }
                     });

@@ -118,7 +118,7 @@ public class AppointmentShowActivity extends ActionBarActivity {
                 new DownloadImageTask(mDoctorImage).execute(WebserverUrl.ROOT_URL + thumbUrl);
             }
             catch (Exception e) {
-                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error loading appointment", Toast.LENGTH_LONG).show();
             }
             finally {
                 super.onPostExecute(json);
