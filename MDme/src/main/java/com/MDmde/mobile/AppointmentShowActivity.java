@@ -61,7 +61,7 @@ public class AppointmentShowActivity extends ActionBarActivity {
         super.onResume();
 
         if (mPreferences.contains("ApiToken")) {
-            int appointmentId = getIntent().getIntExtra("appointmentId", -1);
+            int appointmentId = getIntent().getIntExtra("appointment_id", -1);
             loadAppointmentFromApi(APPOINTMENT_SHOW_URL + appointmentId);
         }
         else {

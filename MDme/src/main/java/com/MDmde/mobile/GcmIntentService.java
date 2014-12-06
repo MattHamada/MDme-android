@@ -53,13 +53,16 @@ public class GcmIntentService extends IntentService {
             else if (GoogleCloudMessaging.
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
                 String message = extras.getString("message");
+                int id = Integer.parseInt(extras.getString("appointment_id"));
                 NotificationTypes type = NotificationTypes.valueOf(
                         (extras.getString("type")).toUpperCase());
                 switch (type) {
                     case DELAY:
-                        sendDelayNotification(message);
+                        sendDelayNotification(message, id);
+                        break;
                     case READY:
                         sendReadyNotification(message);
+                        break;
 
                 }
                 //sendNotification(message);
@@ -89,11 +92,13 @@ public class GcmIntentService extends IntentService {
 
     // shows notification of delayed appointment
     // TODO should bring user to appointment activity or a confirm/deny delay activity
-    private void sendDelayNotification(String msg) {
+    private void sendDelayNotification(String msg, int appointmentId) {
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent extrasIntent = new Intent(GcmIntentService.this, AppointmentShowActivity.class);
+        extrasIntent.putExtra("appointment_id", appointmentId);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, AppointmentMenuActivity.class), 0);
+                extrasIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.ic_stat_gcm)
