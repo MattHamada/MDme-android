@@ -39,5 +39,6 @@
     <string name="appointment_show_time_label">Time: </string>
     <string name="appointment_show_doctor_label">Doctor: </string>
     <string name="appointment_show_confirmed_label">Confirmed?: </string>
+    <string name="title_activity_requested_appointments">Pending Appointments</string>
 
 </resources>

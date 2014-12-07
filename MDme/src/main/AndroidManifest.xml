@@ -99,6 +99,9 @@
         <activity
             android:name="com.MDmde.mobile.DoctorShowActivity"
             android:label="@string/title_activity_doctor_show" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MDmde.mobile.DoctorIndexActivity" />
         </activity>
         <activity
             android:name="com.MDmde.mobile.AppointmentMenuActivity"
@@ -107,6 +110,9 @@
         <activity
             android:name="com.MDmde.mobile.ConfirmedAppointmentsActivity"
             android:label="@string/title_activity_confirmed_appointments" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MDmde.mobile.AppointmentMenuActivity" />
         </activity>
         <activity
             android:name="com.MDmde.mobile.ClinicsIndexActivity"
@@ -115,14 +121,25 @@
         <activity
             android:name="com.MDmde.mobile.ClinicActivity"
             android:label="@string/title_activity_clinic" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MDmde.mobile.ClinicsIndexActivity" />
         </activity>
         <activity
             android:name="com.MDmde.mobile.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".AppointmentShowActivity"
+            android:name="com.MDmde.mobile.AppointmentShowActivity"
             android:label="@string/title_activity_appointment_show" >
+        </activity>
+        <activity
+            android:name="com.MDmde.mobile.RequestedAppointmentsActivity"
+            android:label="@string/title_activity_requested_appointments"
+            android:parentActivityName="com.MDmde.mobile.AppointmentMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MDmde.mobile.AppointmentMenuActivity" />
         </activity>
     </application>
 
