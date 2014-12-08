@@ -3,8 +3,8 @@ package com.MDmde.mobile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,17 +22,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+public class RequestedAppointmentsActivity extends ActionBarActivity {
 
-public class ConfirmedAppointmentsActivity extends ActionBarActivity {
-
-    private final String CONFIRMED_APPOINTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/appointments/confirmed.json";
+    private final String REQUESTED_APPOINTMENTS_URL = WebserverUrl.ROOT_URL + "/api/v1/patients/appointments/requested.json";
 
     private SharedPreferences mPreferences;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirmed_appointments);
-        setTitle("Confirmed Appointments");
+        setContentView(R.layout.activity_requested_appointments);
+        setTitle("Pending Appointments");
 
         mPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
     }
@@ -40,9 +40,8 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.confirmed_appointments, menu);
+        getMenuInflater().inflate(R.menu.menu_requested_appointments, menu);
         return true;
     }
 
@@ -52,38 +51,35 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    // TODO make sure going back to login can redirect back here after auth. Do this for all activities
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        //only load if still signed in
-        if(mPreferences.contains("ApiToken"))
+        if (mPreferences.contains("ApiToken"))
         {
-            loadAppointmentsFromAPI(CONFIRMED_APPOINTMENTS_URL);
+            loadAppointmentsFromAPI(REQUESTED_APPOINTMENTS_URL);
         }
-        else
-        {
-            Intent intent = new Intent(ConfirmedAppointmentsActivity.this, LoginActivity.class);
-            startActivityForResult(intent, 0);
+        else {
+            Intent intent = new Intent(RequestedAppointmentsActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
     }
 
-    private void loadAppointmentsFromAPI(String url)
-    {
-        GetAppointmentsTask getAppointmentsTask = new GetAppointmentsTask(ConfirmedAppointmentsActivity.this);
+    private void loadAppointmentsFromAPI(String url) {
+        GetAppointmentsTask getAppointmentsTask = new GetAppointmentsTask(RequestedAppointmentsActivity.this);
         getAppointmentsTask.setMessageLoading("Loading Appointments...");
         getAppointmentsTask.execute(url + "?api_token=" + mPreferences.getString("ApiToken", ""));
     }
 
-    private class GetAppointmentsTask extends UrlJsonAsyncTask
-    {
+    private class GetAppointmentsTask extends UrlJsonAsyncTask {
         public GetAppointmentsTask(Context context) { super(context); }
 
         @Override
@@ -111,10 +107,10 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
                 }
 
                 //add to listview
-                final ListView appointmentsListView = (ListView)findViewById(R.id.confirmed_appointments_list_view);
+                final ListView appointmentsListView = (ListView)findViewById(R.id.requested_appointments_list_view);
                 if (appointmentsListView != null)
                 {
-                    appointmentsListView.setAdapter(new ArrayAdapter<Appointment>(ConfirmedAppointmentsActivity.this,
+                    appointmentsListView.setAdapter(new ArrayAdapter<Appointment>(RequestedAppointmentsActivity.this,
                             android.R.layout.simple_list_item_1, appointments));
 
                     //add listener
@@ -134,7 +130,7 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
             catch (Exception e)
             {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                Log.e("ConfirmedAppointmentsIndex", "Error loading appointments", e);
+                Log.e("RequestedAppointmentsIndex", "Error loading appointments", e);
             }
             finally
             {
@@ -143,6 +139,5 @@ public class ConfirmedAppointmentsActivity extends ActionBarActivity {
 
         }
     }
-
 
 }
