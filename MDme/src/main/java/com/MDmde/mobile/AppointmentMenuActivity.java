@@ -66,7 +66,7 @@ public class AppointmentMenuActivity extends ActionBarActivity {
         }
         else
         {
-            Intent intent = new Intent(AppointmentMenuActivity.this, WelcomeActivity.class);
+            Intent intent = new Intent(AppointmentMenuActivity.this, LoginActivity.class);
             startActivityForResult(intent, 0);
             finish();
         }
