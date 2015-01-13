@@ -5,7 +5,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -29,7 +29,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/camera_button_desc"/>
 
                 <Button
                     android:id="@+id/update_profile_browse_image_button"
@@ -40,16 +41,14 @@
 
             </LinearLayout>
 
-
-
-
             <ImageView
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="300px"
                 android:layout_height="300px"
                 android:id="@+id/edit_profile_image"
-                android:layout_marginBottom="32dp"/>
+                android:layout_marginBottom="32dp"
+                android:contentDescription="@string/edit_button_desc"/>
 
 
         </LinearLayout>

@@ -11,13 +11,18 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Matt Hamada on 4/10/14.
+ * MDme Android application
+ * Author:: Matt Hamada (maito:mattahamada@gmail.com)
+ * Created on:: 4/10/14
+ * Copyright:: Copyright (c) 2014 MDme
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
-public class DoctorAdapater extends BaseAdapter
+class DoctorAdapater extends BaseAdapter
 {
-    private Context mContext;
-    private List<Doctor> mDoctors;
-    LayoutInflater mInflater;
+    private final Context mContext;
+    private final List<Doctor> mDoctors;
+    private final LayoutInflater mInflater;
 
 
     public DoctorAdapater(Context context, List<Doctor> doctors)

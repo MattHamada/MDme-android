@@ -2,10 +2,15 @@ package com.MDmde.mobile;
 import java.io.Serializable;
 
 /**
- * Created by ermacaz on 10/16/14.
+ * MDme Android application
+ * Author:: ermacaz (maito:mattahamada@gmail.com)
+ * Created on:: 10/16/14
+ * Copyright:: Copyright (c) 2014 MDme
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
-@SuppressWarnings("serial")
-public class Clinic implements Serializable {
+ @SuppressWarnings("serial")
+class Clinic implements Serializable {
 
     private int id;
     private String name;

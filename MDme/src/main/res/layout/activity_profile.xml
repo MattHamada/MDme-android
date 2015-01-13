@@ -10,7 +10,8 @@
             android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/profile_image"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/profile_image_desc"/>
 
         <TableLayout
             android:layout_width="fill_parent"

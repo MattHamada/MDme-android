@@ -9,11 +9,15 @@ import android.view.Display;
 import android.widget.ImageView;
 
 /**
- * Created by Matt Hamada on 4/8/14.
+ * MDme Android application
+ * Author:: Matt Hamada (maito:mattahamada@gmail.com)
+ * Created on:: 4/8/14
+ * Copyright:: Copyright (c) 2014 MDme
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
-
-//scales image
-public class PictureUtils
+ //scales image
+class PictureUtils
 {
     /**
      * get a BitmapDrawable from a local file that is scaled down

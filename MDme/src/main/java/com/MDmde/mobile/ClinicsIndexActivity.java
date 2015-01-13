@@ -124,7 +124,6 @@ public class ClinicsIndexActivity extends ActionBarActivity {
                     clinicsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String clinicName = clinicsListView.getAdapter().getItem(position).toString();
                             Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
                             intent.putExtra("clinic", ((Clinic)clinicsListView.getAdapter().
                                                                                 getItem(position)));

@@ -2,8 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="15dp"
-        android:background="@color/MDmeGrey">
+    android:padding="15dp">
 
     <ImageView
         android:background="@color/MDmeGrey"
@@ -11,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
+        android:contentDescription="@string/logo_desc"
         />
 
     <EditText android:id="@+id/userEmail"

@@ -180,7 +180,6 @@ public class UpdateProfileActivity extends ActionBarActivity {
         BitmapDrawable b = null;
         if (p != null)
         {
-            int mOrientation = p.getOrientation();
             String path = getFileStreamPath(p.getFIlename()).getAbsolutePath();
             b = PictureUtils.getScaledDrawable(this, path);
 
@@ -214,7 +213,7 @@ public class UpdateProfileActivity extends ActionBarActivity {
                 //TODO see if possible to combine both put requests
                 try
                 {
-                    HttpResponse response = client.execute(put);
+                    client.execute(put);
                 }
                 catch(Exception e)
                 {

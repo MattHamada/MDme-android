@@ -79,12 +79,12 @@ public class ClinicActivity extends ActionBarActivity {
                 TextView mCityStateTextView =
                         (TextView)findViewById(R.id.clinic_profile_city_state);
                 String cityState = mClinic.getCity() + ", " + mClinic.getState();
-                mAdr3TextView.setText(cityState);
+                mCityStateTextView.setText(cityState);
 
                 TextView mCountry = (TextView)findViewById(R.id.clinic_profile_country);
-                mAdr3TextView.setText(mClinic.getCountry());
+                mCountry.setText(mClinic.getCountry());
                 TextView mZipcode = (TextView)findViewById(R.id.clinic_profile_zipcode);
-                mAdr3TextView.setText(mClinic.getZipcode());
+                mZipcode.setText(mClinic.getZipcode());
             }
         }
         else

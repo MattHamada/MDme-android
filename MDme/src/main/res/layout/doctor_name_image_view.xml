@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:contentDescription="@string/doctor_profile_image_desc"
         />
     <TextView
         android:id="@+id/doctor_index_text"

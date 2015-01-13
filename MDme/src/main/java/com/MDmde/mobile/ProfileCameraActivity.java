@@ -34,7 +34,7 @@ public class ProfileCameraActivity extends ActionBarActivity {
     private Camera mCamera;
     private SurfaceView mSurfaceView;
     private View mProgressContainer;
-    public int orientation;
+    private int orientation;
 
 
 

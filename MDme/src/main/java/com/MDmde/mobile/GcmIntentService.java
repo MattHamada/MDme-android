@@ -1,7 +1,6 @@
 package com.MDmde.mobile;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,11 +12,16 @@ import android.support.v4.app.NotificationCompat;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 /**
- * Created by ermacaz on 11/7/14.
+ * MDme Android application
+ * Author:: ermacaz (maito:mattahamada@gmail.com)
+ * Created on:: 11/7/14
+ * Copyright:: Copyright (c) 2014 MDme
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
-public class GcmIntentService extends IntentService {
+ public class GcmIntentService extends IntentService {
 
-    public static final int NOTIFICATION_ID = 1;
+    private static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
     NotificationCompat.Builder builder;
 
@@ -86,7 +90,7 @@ public class GcmIntentService extends IntentService {
                         .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
                         .setContentText(msg);
 
-        //mBuilder.setContentIntent(contentIntent);
+        mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
 

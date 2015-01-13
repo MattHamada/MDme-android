@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -51,17 +50,17 @@ public class HomeActivity extends ActionBarActivity {
 
     //for gcm reg
     public static final String EXTRA_MESSAGE = "message";
-    public static final String PROPERTY_REG_ID = "registration_id";
-    public static final String TAG = "GCMSettings";
+    private static final String PROPERTY_REG_ID = "registration_id";
+    private static final String TAG = "GCMSettings";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     //google API project number
-    String SENDER_ID = "570465868788";
-    String regid;
+    private final String SENDER_ID = "570465868788";
+    private String regid;
 
-    GoogleCloudMessaging gcm;
+    private GoogleCloudMessaging gcm;
     AtomicInteger msgID = new AtomicInteger();
-    Context context;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -307,7 +306,7 @@ public class HomeActivity extends ActionBarActivity {
         //onPostExecute
         try {
             if (!json.getBoolean("success")) {
-                Toast.makeText(context, "Error synching settings", Toast.LENGTH_LONG);
+                Toast.makeText(context, "Error synching settings", Toast.LENGTH_LONG).show();
             }
         }
         catch (Exception e) {
@@ -327,7 +326,7 @@ public class HomeActivity extends ActionBarActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
-        editor.commit();
+        editor.apply();
     }
 
     private void loadTasksFromAPI(String url)

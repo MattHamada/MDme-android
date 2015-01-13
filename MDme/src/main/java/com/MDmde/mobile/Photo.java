@@ -6,9 +6,14 @@ import org.json.JSONObject;
 import java.io.File;
 
 /**
- * Created by ermacaz on 4/8/14.
+ * MDme Android application
+ * Author:: ermacaz (maito:mattahamada@gmail.com)
+ * Created on:: 4/8/14
+ * Copyright:: Copyright (c) 2014 MDme
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
  */
-public class Photo
+ class Photo
 {
     private static final String JSON_FILENAME = "filename";
     private static final String JSON_ORIENTATION = "orientation";

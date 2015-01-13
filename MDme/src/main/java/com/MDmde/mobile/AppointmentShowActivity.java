@@ -66,6 +66,7 @@ public class AppointmentShowActivity extends ActionBarActivity {
         }
         else {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
         }
     }
 
