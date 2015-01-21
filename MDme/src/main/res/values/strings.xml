@@ -41,10 +41,13 @@
     <string name="appointment_show_confirmed_label">Confirmed?: </string>
     <string name="title_activity_requested_appointments">Pending Appointments</string>
 
-    <!--Content Descriptions-->
+    <!-- Content Descriptions -->
     <string name="doctor_profile_image_desc">Image of doctor</string>
     <string name="profile_image_desc">Profile image</string>
     <string name="logo_desc">MDme logo</string>
     <string name="camera_button_desc">Take image</string>
     <string name="edit_button_desc">Edit profile</string>
+    <string name="title_activity_appointment_create">AppointmentCreateActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

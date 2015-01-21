@@ -39,7 +39,7 @@
             android:value="AIzaSyAqrogv2iaeEnYFTyLg6flbqa1_wuApgqc" />
 
         <receiver
-            android:name="com.MDmde.mobile.GcmBroadcastReceiver"
+            android:name=".GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -48,10 +48,10 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.MDmde.mobile.GcmIntentService" />
+        <service android:name=".GcmIntentService" />
 
         <activity
-            android:name="com.MDmde.mobile.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.MDmde.mobile.HomeActivity"
+            android:name=".HomeActivity"
             android:label="HomeActivity" >
         </activity>
         <!-- <activity -->
@@ -75,68 +75,76 @@
         <!-- > -->
         <!-- </activity> -->
         <activity
-            android:name="com.MDmde.mobile.ProfileActivity"
+            android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.UpdateProfileActivity"
+            android:name=".UpdateProfileActivity"
             android:label="@string/title_activity_update_profile"
             android:noHistory="true" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.ProfileCameraActivity"
+            android:name=".ProfileCameraActivity"
             android:label="@string/title_activity_profile_camera"
             android:noHistory="true" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.DoctorIndexActivity"
+            android:name=".DoctorIndexActivity"
             android:label="@string/title_activity_doctor_index" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.DepartmentIndexActivity"
+            android:name=".DepartmentIndexActivity"
             android:label="@string/title_activity_department_index" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.DoctorShowActivity"
+            android:name=".DoctorShowActivity"
             android:label="@string/title_activity_doctor_show" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MDmde.mobile.DoctorIndexActivity" />
         </activity>
         <activity
-            android:name="com.MDmde.mobile.AppointmentMenuActivity"
+            android:name=".AppointmentMenuActivity"
             android:label="@string/title_activity_appointment_menu" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.ConfirmedAppointmentsActivity"
+            android:name=".ConfirmedAppointmentsActivity"
             android:label="@string/title_activity_confirmed_appointments" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MDmde.mobile.AppointmentMenuActivity" />
         </activity>
         <activity
-            android:name="com.MDmde.mobile.ClinicsIndexActivity"
+            android:name=".ClinicsIndexActivity"
             android:label="@string/title_activity_clinics" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.ClinicActivity"
+            android:name=".ClinicActivity"
             android:label="@string/title_activity_clinic" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MDmde.mobile.ClinicsIndexActivity" />
         </activity>
         <activity
-            android:name="com.MDmde.mobile.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.AppointmentShowActivity"
+            android:name=".AppointmentShowActivity"
             android:label="@string/title_activity_appointment_show" >
         </activity>
         <activity
-            android:name="com.MDmde.mobile.RequestedAppointmentsActivity"
+            android:name=".RequestedAppointmentsActivity"
             android:label="@string/title_activity_requested_appointments"
-            android:parentActivityName="com.MDmde.mobile.AppointmentMenuActivity" >
+            android:parentActivityName=".AppointmentMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.MDmde.mobile.AppointmentMenuActivity" />
+        </activity>
+        <activity
+            android:name=".AppointmentCreateActivity"
+            android:label="@string/title_activity_appointment_create"
+            android:parentActivityName=".AppointmentMenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.MDmde.mobile.AppointmentMenuActivity" />
