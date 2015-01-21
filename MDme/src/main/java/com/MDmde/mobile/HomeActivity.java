@@ -235,7 +235,6 @@ public class HomeActivity extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(String msg) {
-                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
             }
 
 
