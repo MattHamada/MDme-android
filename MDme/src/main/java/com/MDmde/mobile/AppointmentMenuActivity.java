@@ -121,6 +121,9 @@ public class AppointmentMenuActivity extends ActionBarActivity {
                                     startActivity(intent2);
                                     break;
                                 case 2:
+                                    Intent intent3 = new Intent(getApplicationContext(),
+                                            AppointmentCreate2Activity.class);
+                                    startActivity(intent3);
                                     break;
                             }
                         }
