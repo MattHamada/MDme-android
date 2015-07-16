@@ -56,19 +56,21 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
             }
             else if (GoogleCloudMessaging.
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
-                String message = extras.getString("message");
-                int id = Integer.parseInt(extras.getString("appointment_id"));
-                NotificationTypes type = NotificationTypes.valueOf(
-                        (extras.getString("type")).toUpperCase());
-                switch (type) {
-                    case DELAY:
-                        sendDelayNotification(message, id);
-                        break;
-                    case READY:
-                        sendReadyNotification(message);
-                        break;
+                sendDelayNotification("Appointment delayed to 3:35 PM", 733);
 
-                }
+//                String message = extras.getString("message");
+//                int id = Integer.parseInt(extras.getString("appointment_id"));
+//                NotificationTypes type = NotificationTypes.valueOf(
+//                        (extras.getString("type")).toUpperCase());
+//                switch (type) {
+//                    case DELAY:
+//                        sendDelayNotification(message, id);
+//                        break;
+//                    case READY:
+//                        sendReadyNotification(message);
+//                        break;
+//
+//                }
                 //sendNotification(message);
             }
         }
